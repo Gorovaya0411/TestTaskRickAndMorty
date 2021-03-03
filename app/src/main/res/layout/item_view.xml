@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f5fffa">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageViewCharacter"
+            android:layout_width="match_parent"
+            android:layout_height="163dp"
+            android:contentDescription="@string/image_character" />
+
+        <TextView
+            android:id="@+id/textViewNameCharacter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="162dp"
+            android:background="#caea00"
+            android:fontFamily="@font/main_font"
+            android:gravity="center_horizontal|center_vertical"
+            android:padding="5dp"
+            android:textColor="#005d04"
+            android:textSize="30sp"
+            tools:text="Toxic Rick" />
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
