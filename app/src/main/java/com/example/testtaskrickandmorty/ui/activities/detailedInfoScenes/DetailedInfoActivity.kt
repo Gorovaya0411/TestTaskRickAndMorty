@@ -1,6 +1,7 @@
 package com.example.testtaskrickandmorty.ui.activities.detailedInfoScenes
 
 import android.os.Bundle
+import com.example.testtaskrickandmorty.MyApplication
 import com.example.testtaskrickandmorty.R
 import com.example.testtaskrickandmorty.data.model.AnswerResults
 import com.example.testtaskrickandmorty.ui.activities.mainScenes.MainPresenter
@@ -18,6 +19,7 @@ class DetailedInfoActivity : MvpAppCompatActivity(), DetailedInfoView {
 //    private val detailedInfoPresenter by moxyPresenter { DetailedInfoPresenter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        MyApplication.appComponent.injectDetailedActivityModule(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_info)
         val getModelAnswerResults = intent.getSerializableExtra("KEY") as AnswerResults

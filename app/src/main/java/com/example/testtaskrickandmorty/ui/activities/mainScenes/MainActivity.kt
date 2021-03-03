@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.testtaskrickandmorty.MyApplication
 import com.example.testtaskrickandmorty.R
+import com.example.testtaskrickandmorty.data.apiService.RickAndMortyApiService
 import com.example.testtaskrickandmorty.data.model.AnswerResults
 import com.example.testtaskrickandmorty.ui.Adapter
 import com.example.testtaskrickandmorty.ui.PaginationScrollListener
@@ -19,9 +20,9 @@ import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import javax.inject.Inject
 
 class MainActivity : MvpAppCompatActivity(), MainView {
-
 
     @InjectPresenter
     lateinit var mainPresenter: MainPresenter
@@ -30,6 +31,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         Adapter { openingNewActivity(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        MyApplication.appComponent.injectMainActivityModule(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

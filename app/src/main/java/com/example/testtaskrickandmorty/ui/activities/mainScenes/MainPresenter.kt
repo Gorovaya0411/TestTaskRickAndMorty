@@ -1,21 +1,25 @@
 package com.example.testtaskrickandmorty.ui.activities.mainScenes
 
+import com.example.testtaskrickandmorty.MyApplication
 import com.example.testtaskrickandmorty.data.apiService.RickAndMortyApiService
+import com.example.testtaskrickandmorty.data.repository.CharactersMainRepository
+import com.example.testtaskrickandmorty.domain.CharactersMainUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import moxy.MvpPresenter
+import javax.inject.Inject
 
-class MainPresenter : MvpPresenter<MainView>() {
+class MainPresenter() : MvpPresenter<MainView>() {
 
-    private val apiService = RickAndMortyApiService.create()
+    @Inject
+    lateinit var apiService: RickAndMortyApiService
     private var increment: Int = 1
     private var isRequest: Boolean = false
-
+    private val charactersMainUseCase = CharactersMainUseCase(CharactersMainRepository(apiService))
 
     fun swipeRefresh() {
-        increment = 1
-        val subscribe = apiService.getCharacter(page = increment)
-            .subscribeOn(Schedulers.io())
+
+       val disposable = charactersMainUseCase.swipeRefresh()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 viewState.showInternet()
@@ -26,11 +30,12 @@ class MainPresenter : MvpPresenter<MainView>() {
     }
 
     fun getMoreItems() {
+
         if (!isRequest) {
             isRequest = true
             increment += 1
             viewState.visibilityProgressBar(true)
-            val subscribe = apiService.getCharacter(page = increment)
+            val disposable = apiService.getCharacter(page = increment)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe({
@@ -42,4 +47,5 @@ class MainPresenter : MvpPresenter<MainView>() {
                 })
         }
     }
+    MyApplication.appComponent.inject(this)
 }
