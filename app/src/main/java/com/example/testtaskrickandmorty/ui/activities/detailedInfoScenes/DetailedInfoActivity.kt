@@ -16,8 +16,6 @@ class DetailedInfoActivity : MvpAppCompatActivity(), DetailedInfoView {
     @InjectPresenter
     lateinit var detailedInfoPresenter: DetailedInfoPresenter
 
-//    private val detailedInfoPresenter by moxyPresenter { DetailedInfoPresenter() }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         MyApplication.appComponent.injectDetailedActivityModule(this)
         super.onCreate(savedInstanceState)
