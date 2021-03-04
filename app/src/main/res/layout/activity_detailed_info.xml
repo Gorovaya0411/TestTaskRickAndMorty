@@ -122,6 +122,13 @@
                 tools:layout_editor_absoluteX="20dp">
 
 
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="164dp"
+                    android:background="@drawable/border_purple_square" />
+
                 <TextView
                     android:id="@+id/textViewType"
                     android:layout_width="wrap_content"
@@ -200,6 +207,15 @@
                     android:gravity="start"
                     android:textStyle="bold"
                     tools:text="episode" />
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+
+                    android:layout_marginTop="70dp"
+
+                    android:background="@drawable/border_purple_square" />
 
             </androidx.cardview.widget.CardView>
 
