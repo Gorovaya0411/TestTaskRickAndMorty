@@ -22,13 +22,10 @@
                 android:id="@+id/cardViewMain"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="15dp"
+                android:layout_margin="15dp"
                 app:cardCornerRadius="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="15dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -39,7 +36,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="160dp"
+                        android:layout_marginStart="159dp"
                         android:layout_marginLeft="140dp"
                         android:layout_marginTop="10dp"
                         android:ellipsize="end"
@@ -49,9 +46,8 @@
                         android:scrollHorizontally="true"
                         android:textColor="#005d04 "
                         android:textSize="40sp"
+                        android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@+id/textViewSpecies"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/cardViewImage"
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="Toxic Rick" />
 
@@ -60,10 +56,12 @@
                         style="@style/StyleForTheBaseText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="160dp"
+                        android:layout_marginStart="159dp"
                         android:layout_marginLeft="140dp"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center_horizontal"
                         app:layout_constraintBottom_toTopOf="@+id/textViewGender"
-                        app:layout_constraintStart_toEndOf="@+id/cardViewImage"
+                        tools:layout_editor_absoluteX="160dp"
                         tools:text="Human" />
 
                     <TextView
@@ -71,11 +69,13 @@
                         style="@style/StyleForTheBaseText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="160dp"
-                        android:layout_marginLeft="160dp"
+                        android:layout_marginStart="159dp"
+                        android:layout_marginLeft="140dp"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center_horizontal"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toTopOf="@+id/textViewStatus"
-                        app:layout_constraintStart_toEndOf="@+id/cardViewImage"
+                        tools:layout_editor_absoluteX="160dp"
                         tools:text="Man" />
 
                     <TextView
@@ -83,13 +83,14 @@
                         style="@style/StyleForTheBaseText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="160dp"
+                        android:layout_marginStart="159dp"
                         android:layout_marginLeft="140dp"
+                        android:layout_marginBottom="8dp"
+                        android:gravity="center_horizontal"
                         android:paddingBottom="5dp"
                         android:textSize="20sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/cardViewImage"
                         tools:text="Alive" />
 
                     <androidx.cardview.widget.CardView
@@ -99,7 +100,7 @@
                         android:layout_margin="5dp"
                         app:cardCornerRadius="10dp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        tools:layout_editor_absoluteY="5dp">
 
                         <ImageView
                             android:id="@+id/imageViewCharacter"
@@ -117,8 +118,8 @@
                 android:layout_margin="20dp"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardViewMain">
+                app:layout_constraintTop_toBottomOf="@+id/cardViewMain"
+                tools:layout_editor_absoluteX="20dp">
 
 
                 <TextView
@@ -140,11 +141,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="40dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="210dp"
-                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
                     tools:text="-" />
 
                 <TextView
@@ -170,6 +170,7 @@
                     android:layout_marginTop="110dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginRight="210dp"
+                    android:textStyle="bold"
                     tools:text="01,02,2002\n 15:44:44" />
 
                 <TextView
@@ -197,6 +198,7 @@
                     android:layout_marginRight="210dp"
                     android:layout_marginBottom="10dp"
                     android:gravity="start"
+                    android:textStyle="bold"
                     tools:text="episode" />
 
             </androidx.cardview.widget.CardView>

@@ -11,7 +11,6 @@
         <item name="colorPrimary">#03ccd3</item>
         <item name="fontFamily">@font/main_font</item>
         <item name="android:textSize">23sp</item>
-        <item name="android:gravity">center_horizontal</item>
         <item name="android:layout_gravity">center_horizontal</item>
     </style>
 
