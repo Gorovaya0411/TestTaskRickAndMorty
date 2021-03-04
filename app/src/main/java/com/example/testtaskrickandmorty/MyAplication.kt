@@ -1,6 +1,5 @@
 package com.example.testtaskrickandmorty
 
-import android.app.AppComponentFactory
 import android.app.Application
 import com.example.testtaskrickandmorty.di.module.AppComponent
 import com.example.testtaskrickandmorty.di.module.AppModule

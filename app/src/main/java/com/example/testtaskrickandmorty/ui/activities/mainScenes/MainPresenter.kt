@@ -3,7 +3,6 @@ package com.example.testtaskrickandmorty.ui.activities.mainScenes
 
 import com.example.testtaskrickandmorty.domain.CharactersMainUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import moxy.MvpPresenter
 import javax.inject.Inject
 
@@ -32,7 +31,7 @@ class MainPresenter @Inject constructor(private val charactersMainUseCase: Chara
             increment += 1
             viewState.visibilityProgressBar(true)
             val disposable = charactersMainUseCase.getMoreItems()
-                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
                     viewState.addData(it.results)
                     isRequest = false
