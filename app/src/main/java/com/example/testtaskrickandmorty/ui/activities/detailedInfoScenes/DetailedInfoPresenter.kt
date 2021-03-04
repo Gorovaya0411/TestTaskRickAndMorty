@@ -2,7 +2,6 @@ package com.example.testtaskrickandmorty.ui.activities.detailedInfoScenes
 
 import com.example.testtaskrickandmorty.data.apiService.RickAndMortyApiService
 import com.example.testtaskrickandmorty.domain.CharactersDetailedUseCase
-import com.example.testtaskrickandmorty.domain.CharactersMainUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import moxy.MvpPresenter

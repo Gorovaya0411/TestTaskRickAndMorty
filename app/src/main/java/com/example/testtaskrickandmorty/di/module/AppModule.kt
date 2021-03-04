@@ -17,7 +17,7 @@ import javax.inject.Singleton
 @Module
 class AppModule
 {
-    @Singleton
+    @AppScope
     @Provides
     fun provideOKHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
@@ -27,14 +27,14 @@ class AppModule
 
     }
 
-    @Singleton
+    @AppScope
     @Provides
     fun provideGSON(): GsonConverterFactory {
         return GsonConverterFactory.create()
 
     }
 
-    @Singleton
+    @AppScope
     @Provides
     fun provideRetrofit(
         gsonConverterFactory: GsonConverterFactory,
@@ -49,23 +49,23 @@ class AppModule
 
     }
 
-    @Singleton
+    @AppScope
     @Provides
     fun providesService(retrofit: Retrofit):RickAndMortyApiService = retrofit.create(RickAndMortyApiService::class.java)
 
-    @Singleton
+    @AppScope
     @Provides
     fun providesMainUseCase(charactersMainRepository: CharactersMainRepository):CharactersMainUseCase = CharactersMainUseCase(charactersMainRepository)
 
-    @Singleton
+    @AppScope
     @Provides
     fun providesMainRepository(apiService: RickAndMortyApiService):CharactersMainRepository = CharactersMainRepository(apiService)
 
-    @Singleton
+    @AppScope
     @Provides
     fun providesDetailedUseCase(charactersDetailedRepository: CharactersDetailedRepository):CharactersDetailedUseCase= CharactersDetailedUseCase(charactersDetailedRepository)
 
-    @Singleton
+    @AppScope
     @Provides
     fun providesDetailedRepository(apiService: RickAndMortyApiService):CharactersDetailedRepository = CharactersDetailedRepository(apiService)
 }

@@ -1,6 +1,5 @@
 package com.example.testtaskrickandmorty.domain
 
-import com.example.testtaskrickandmorty.data.model.Data
 import com.example.testtaskrickandmorty.data.model.DataEpisode
 import com.example.testtaskrickandmorty.data.repository.CharactersDetailedRepository
 import io.reactivex.Observable

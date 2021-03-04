@@ -5,12 +5,9 @@ import com.example.testtaskrickandmorty.MyApplication
 import com.example.testtaskrickandmorty.R
 import com.example.testtaskrickandmorty.data.model.AnswerResults
 import com.example.testtaskrickandmorty.di.detailedModule.DetailedActivityModule
-import com.example.testtaskrickandmorty.di.mainModule.MainActivityModule
-import com.example.testtaskrickandmorty.ui.activities.mainScenes.MainPresenter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detailed_info.*
 import moxy.MvpAppCompatActivity
-import moxy.ktx.moxyPresenter
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
 

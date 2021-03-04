@@ -1,7 +1,6 @@
 package com.example.testtaskrickandmorty.data.repository
 
 import com.example.testtaskrickandmorty.data.apiService.RickAndMortyApiService
-import com.example.testtaskrickandmorty.data.model.Data
 import com.example.testtaskrickandmorty.data.model.DataEpisode
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
