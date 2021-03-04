@@ -28,7 +28,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     @ProvidePresenter
     fun provideLandingActivityPresenter(): MainPresenter {
         return MyApplication.appComponent.inject(
-           MainActivityModule()
+            MainActivityModule()
         ).presenter
     }
 
@@ -36,7 +36,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         Adapter { openingNewActivity(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        MyApplication.appComponent.injectMainActivityModule(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

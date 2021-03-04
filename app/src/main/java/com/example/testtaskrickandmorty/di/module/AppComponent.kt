@@ -6,6 +6,7 @@ import com.example.testtaskrickandmorty.di.mainModule.MainActivityModule
 import com.example.testtaskrickandmorty.di.mainModule.MainActivitySubComponent
 import com.example.testtaskrickandmorty.ui.activities.mainScenes.MainPresenter
 import dagger.Component
+
 @AppScope
 @Component(modules = [AppModule::class])
 interface AppComponent {

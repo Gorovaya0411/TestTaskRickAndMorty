@@ -6,6 +6,9 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 class CharactersDetailedUseCase @Inject constructor(private val charactersDetailedRepository: CharactersDetailedRepository) {
-    fun getEpisodes(string: String): Observable<List<DataEpisode>> = charactersDetailedRepository.getEpisodes(string)
-    fun getEpisode(string: String):Observable<DataEpisode>  = charactersDetailedRepository.getEpisode(string)
+    fun getEpisodes(string: String): Observable<List<DataEpisode>> =
+        charactersDetailedRepository.getEpisodes(string)
+
+    fun getEpisode(string: String): Observable<DataEpisode> =
+        charactersDetailedRepository.getEpisode(string)
 }

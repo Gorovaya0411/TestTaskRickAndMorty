@@ -24,11 +24,18 @@ class DetailedInfoActivity : MvpAppCompatActivity(), DetailedInfoView {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-//        MyApplication.appComponent.injectDetailedActivityModule(this)
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_info)
         val getModelAnswerResults = intent.getSerializableExtra("KEY") as AnswerResults
-        textViewName.setOnClickListener { textViewName.maxLines = Integer.MAX_VALUE }
+        textViewName.setOnClickListener {
+            if (textViewName.maxLines == Int.MAX_VALUE) {
+                textViewName.maxLines = 1
+            } else {
+                textViewName.maxLines = Integer.MAX_VALUE
+            }
+        }
+
         textViewName.text = getModelAnswerResults.name
         textViewSpecies.text = getModelAnswerResults.species
         textViewGender.text = getModelAnswerResults.gender

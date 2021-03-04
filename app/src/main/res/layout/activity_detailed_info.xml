@@ -36,8 +36,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginStart="159dp"
-                        android:layout_marginLeft="140dp"
+                        android:layout_marginStart="155dp"
+                        android:layout_marginLeft="156dp"
                         android:layout_marginTop="10dp"
                         android:ellipsize="end"
                         android:fontFamily="@font/main_font"
@@ -47,8 +47,8 @@
                         android:textColor="#005d04 "
                         android:textSize="40sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/textViewSpecies"
                         app:layout_constraintTop_toTopOf="parent"
+                        tools:layout_editor_absoluteX="159dp"
                         tools:text="Toxic Rick" />
 
                     <TextView
@@ -56,11 +56,11 @@
                         style="@style/StyleForTheBaseText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="159dp"
-                        android:layout_marginLeft="140dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="155dp"
+                        android:layout_marginLeft="156dp"
+                        android:layout_marginTop="25dp"
                         android:gravity="center_horizontal"
-                        app:layout_constraintBottom_toTopOf="@+id/textViewGender"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewName"
                         tools:layout_editor_absoluteX="160dp"
                         tools:text="Human" />
 
@@ -69,12 +69,12 @@
                         style="@style/StyleForTheBaseText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="159dp"
-                        android:layout_marginLeft="140dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="155dp"
+                        android:layout_marginLeft="156dp"
+                        android:layout_marginTop="8dp"
                         android:gravity="center_horizontal"
                         android:textSize="20sp"
-                        app:layout_constraintBottom_toTopOf="@+id/textViewStatus"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewSpecies"
                         tools:layout_editor_absoluteX="160dp"
                         tools:text="Man" />
 
@@ -83,14 +83,14 @@
                         style="@style/StyleForTheBaseText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="159dp"
-                        android:layout_marginLeft="140dp"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginStart="155dp"
+                        android:layout_marginLeft="156dp"
+                        android:layout_marginTop="8dp"
                         android:gravity="center_horizontal"
                         android:paddingBottom="5dp"
                         android:textSize="20sp"
-                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textViewGender"
                         tools:text="Alive" />
 
                     <androidx.cardview.widget.CardView

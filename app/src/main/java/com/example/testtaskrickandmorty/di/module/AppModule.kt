@@ -14,8 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 @Module
-class AppModule
-{
+class AppModule {
     @AppScope
     @Provides
     fun provideOKHttpClient(): OkHttpClient {
@@ -40,7 +39,7 @@ class AppModule
         okHttpClient: OkHttpClient
     ): Retrofit {
 
-        return  Retrofit.Builder()
+        return Retrofit.Builder()
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .baseUrl("https://rickandmortyapi.com/api/")
@@ -50,21 +49,26 @@ class AppModule
 
     @AppScope
     @Provides
-    fun providesService(retrofit: Retrofit):RickAndMortyApiService = retrofit.create(RickAndMortyApiService::class.java)
+    fun providesService(retrofit: Retrofit): RickAndMortyApiService =
+        retrofit.create(RickAndMortyApiService::class.java)
 
     @AppScope
     @Provides
-    fun providesMainUseCase(charactersMainRepository: CharactersMainRepository):CharactersMainUseCase = CharactersMainUseCase(charactersMainRepository)
+    fun providesMainUseCase(charactersMainRepository: CharactersMainRepository): CharactersMainUseCase =
+        CharactersMainUseCase(charactersMainRepository)
 
     @AppScope
     @Provides
-    fun providesMainRepository(apiService: RickAndMortyApiService):CharactersMainRepository = CharactersMainRepository(apiService)
+    fun providesMainRepository(apiService: RickAndMortyApiService): CharactersMainRepository =
+        CharactersMainRepository(apiService)
 
     @AppScope
     @Provides
-    fun providesDetailedUseCase(charactersDetailedRepository: CharactersDetailedRepository):CharactersDetailedUseCase= CharactersDetailedUseCase(charactersDetailedRepository)
+    fun providesDetailedUseCase(charactersDetailedRepository: CharactersDetailedRepository): CharactersDetailedUseCase =
+        CharactersDetailedUseCase(charactersDetailedRepository)
 
     @AppScope
     @Provides
-    fun providesDetailedRepository(apiService: RickAndMortyApiService):CharactersDetailedRepository = CharactersDetailedRepository(apiService)
+    fun providesDetailedRepository(apiService: RickAndMortyApiService): CharactersDetailedRepository =
+        CharactersDetailedRepository(apiService)
 }

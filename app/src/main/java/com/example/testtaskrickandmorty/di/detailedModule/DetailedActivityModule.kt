@@ -9,7 +9,7 @@ import dagger.Module
 class DetailedActivityModule() {
     @DetailedActivityScope
     @AppScope
-    fun providerDetailedActivityPresenter(charactersDetailedUseCase: CharactersDetailedUseCase):DetailedInfoPresenter{
+    fun providerDetailedActivityPresenter(charactersDetailedUseCase: CharactersDetailedUseCase): DetailedInfoPresenter {
         return DetailedInfoPresenter(charactersDetailedUseCase)
     }
 

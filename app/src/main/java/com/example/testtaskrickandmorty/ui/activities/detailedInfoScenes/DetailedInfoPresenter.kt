@@ -1,6 +1,5 @@
 package com.example.testtaskrickandmorty.ui.activities.detailedInfoScenes
 
-import com.example.testtaskrickandmorty.data.apiService.RickAndMortyApiService
 import com.example.testtaskrickandmorty.domain.CharactersDetailedUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -9,7 +8,6 @@ import javax.inject.Inject
 
 class DetailedInfoPresenter @Inject constructor(private val charactersDetailedUseCase: CharactersDetailedUseCase) :
     MvpPresenter<DetailedInfoView>() {
-    private val apiService = RickAndMortyApiService.create()
     fun getEpisodes(string: String) {
         val getEpisodes = charactersDetailedUseCase.getEpisodes(string)
             .subscribeOn(Schedulers.io())
