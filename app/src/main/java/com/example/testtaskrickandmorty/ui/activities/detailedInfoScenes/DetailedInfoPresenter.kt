@@ -1,14 +1,18 @@
 package com.example.testtaskrickandmorty.ui.activities.detailedInfoScenes
 
 import com.example.testtaskrickandmorty.data.apiService.RickAndMortyApiService
+import com.example.testtaskrickandmorty.domain.CharactersDetailedUseCase
+import com.example.testtaskrickandmorty.domain.CharactersMainUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import moxy.MvpPresenter
+import javax.inject.Inject
 
-class DetailedInfoPresenter : MvpPresenter<DetailedInfoView>() {
+class DetailedInfoPresenter @Inject constructor(private val charactersDetailedUseCase: CharactersDetailedUseCase) :
+    MvpPresenter<DetailedInfoView>() {
     private val apiService = RickAndMortyApiService.create()
     fun getEpisodes(string: String) {
-        val getEpisodes = apiService.getEpisodes(string)
+        val getEpisodes = charactersDetailedUseCase.getEpisodes(string)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ list ->
@@ -25,8 +29,7 @@ class DetailedInfoPresenter : MvpPresenter<DetailedInfoView>() {
     }
 
     fun getEpisode(string: String) {
-        val getEpisode = apiService.getEpisode(string)
-            .subscribeOn(Schedulers.io())
+        val getEpisode = charactersDetailedUseCase.getEpisode(string)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 viewState.showEpisode(it.name)

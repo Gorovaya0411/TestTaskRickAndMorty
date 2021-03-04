@@ -12,6 +12,7 @@ import com.example.testtaskrickandmorty.MyApplication
 import com.example.testtaskrickandmorty.R
 import com.example.testtaskrickandmorty.data.apiService.RickAndMortyApiService
 import com.example.testtaskrickandmorty.data.model.AnswerResults
+import com.example.testtaskrickandmorty.di.mainModule.MainActivityModule
 import com.example.testtaskrickandmorty.ui.Adapter
 import com.example.testtaskrickandmorty.ui.PaginationScrollListener
 import com.example.testtaskrickandmorty.ui.activities.detailedInfoScenes.DetailedInfoActivity
@@ -27,11 +28,18 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     @InjectPresenter
     lateinit var mainPresenter: MainPresenter
 
+    @ProvidePresenter
+    fun provideLandingActivityPresenter(): MainPresenter {
+        return MyApplication.appComponent.inject(
+           MainActivityModule()
+        ).presenter
+    }
+
     private val myAdapter =
         Adapter { openingNewActivity(it) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        MyApplication.appComponent.injectMainActivityModule(this)
+//        MyApplication.appComponent.injectMainActivityModule(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 

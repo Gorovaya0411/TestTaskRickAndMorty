@@ -4,20 +4,30 @@ import android.os.Bundle
 import com.example.testtaskrickandmorty.MyApplication
 import com.example.testtaskrickandmorty.R
 import com.example.testtaskrickandmorty.data.model.AnswerResults
+import com.example.testtaskrickandmorty.di.detailedModule.DetailedActivityModule
+import com.example.testtaskrickandmorty.di.mainModule.MainActivityModule
 import com.example.testtaskrickandmorty.ui.activities.mainScenes.MainPresenter
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detailed_info.*
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
 import moxy.presenter.InjectPresenter
+import moxy.presenter.ProvidePresenter
 
 class DetailedInfoActivity : MvpAppCompatActivity(), DetailedInfoView {
 
     @InjectPresenter
     lateinit var detailedInfoPresenter: DetailedInfoPresenter
 
+    @ProvidePresenter
+    fun provideLandingDetailedActivityPresenter(): DetailedInfoPresenter {
+        return MyApplication.appComponent.inject(
+            DetailedActivityModule()
+        ).presenter
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        MyApplication.appComponent.injectDetailedActivityModule(this)
+//        MyApplication.appComponent.injectDetailedActivityModule(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_info)
         val getModelAnswerResults = intent.getSerializableExtra("KEY") as AnswerResults

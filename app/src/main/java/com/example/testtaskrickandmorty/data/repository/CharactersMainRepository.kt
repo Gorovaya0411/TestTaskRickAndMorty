@@ -4,8 +4,9 @@ import com.example.testtaskrickandmorty.data.apiService.RickAndMortyApiService
 import com.example.testtaskrickandmorty.data.model.Data
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class CharactersMainRepository(private val apiService: RickAndMortyApiService) {
+class CharactersMainRepository @Inject constructor(private val apiService: RickAndMortyApiService) {
     private var increment: Int = 1
     fun swipeRefresh(): Observable<Data> {
         increment = 1

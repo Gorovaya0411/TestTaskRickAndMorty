@@ -1,6 +1,10 @@
 package com.example.testtaskrickandmorty.di.module
 
 import com.example.testtaskrickandmorty.data.apiService.RickAndMortyApiService
+import com.example.testtaskrickandmorty.data.repository.CharactersDetailedRepository
+import com.example.testtaskrickandmorty.data.repository.CharactersMainRepository
+import com.example.testtaskrickandmorty.domain.CharactersDetailedUseCase
+import com.example.testtaskrickandmorty.domain.CharactersMainUseCase
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -48,4 +52,20 @@ class AppModule
     @Singleton
     @Provides
     fun providesService(retrofit: Retrofit):RickAndMortyApiService = retrofit.create(RickAndMortyApiService::class.java)
+
+    @Singleton
+    @Provides
+    fun providesMainUseCase(charactersMainRepository: CharactersMainRepository):CharactersMainUseCase = CharactersMainUseCase(charactersMainRepository)
+
+    @Singleton
+    @Provides
+    fun providesMainRepository(apiService: RickAndMortyApiService):CharactersMainRepository = CharactersMainRepository(apiService)
+
+    @Singleton
+    @Provides
+    fun providesDetailedUseCase(charactersDetailedRepository: CharactersDetailedRepository):CharactersDetailedUseCase= CharactersDetailedUseCase(charactersDetailedRepository)
+
+    @Singleton
+    @Provides
+    fun providesDetailedRepository(apiService: RickAndMortyApiService):CharactersDetailedRepository = CharactersDetailedRepository(apiService)
 }
