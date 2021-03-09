@@ -2,11 +2,13 @@
     <string name="app_name">TestTaskRickAndMorty</string>
     <string name="image_character">Image character</string>
     <string name="no_Internet_connection">No internet connection</string>
-    <string name="type">Тип:</string>
-    <string name="list_of_episode">Список эпизодов, в которых появился этот персонаж:</string>
-    <string name="when_character_created">Когда персонаж создан:</string>
+    <string name="type">Type</string>
+    <string name="list_of_episode">List of episodes in which this character appears</string>
+    <string name="when_character_created">When the character was created</string>
     <string name="photo_of_the_character">Photo of the character</string>
     <string name="no_internet">No internet</string>
     <string name="rick_and_morty">Rick and Morty</string>
+    <string name="information">Information</string>
+    <string name="border">border</string>
 
 </resources>

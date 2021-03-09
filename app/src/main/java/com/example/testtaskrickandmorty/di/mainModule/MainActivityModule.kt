@@ -8,7 +8,6 @@ import dagger.Module
 @Module
 class MainActivityModule {
     @MainActivityScope
-    @AppScope
     fun providesMainActivityPresenter(charactersMainUseCase: CharactersMainUseCase): MainPresenter {
         return MainPresenter(charactersMainUseCase)
 

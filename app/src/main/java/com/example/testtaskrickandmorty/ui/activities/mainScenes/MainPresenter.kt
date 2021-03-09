@@ -28,7 +28,6 @@ class MainPresenter @Inject constructor(private val charactersMainUseCase: Chara
 
         if (!isRequest) {
             isRequest = true
-            increment += 1
             viewState.visibilityProgressBar(true)
             val disposable = charactersMainUseCase.getMoreItems()
                 .observeOn(AndroidSchedulers.mainThread())

@@ -14,7 +14,7 @@ class CharactersMainRepository @Inject constructor(private val apiService: RickA
     }
 
     fun getMoreItems(): Observable<Data> {
-        increment = 1
+        increment += 1
         return apiService.getCharacter(page = increment).subscribeOn(Schedulers.io())
     }
 }

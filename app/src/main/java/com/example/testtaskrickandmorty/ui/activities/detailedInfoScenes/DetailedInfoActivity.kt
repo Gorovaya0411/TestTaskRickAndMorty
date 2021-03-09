@@ -1,5 +1,6 @@
 package com.example.testtaskrickandmorty.ui.activities.detailedInfoScenes
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import com.example.testtaskrickandmorty.MyApplication
 import com.example.testtaskrickandmorty.R
@@ -23,25 +24,19 @@ class DetailedInfoActivity : MvpAppCompatActivity(), DetailedInfoView {
         ).presenter
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_info)
         val getModelAnswerResults = intent.getSerializableExtra("KEY") as AnswerResults
-        textViewName.setOnClickListener {
-            if (textViewName.maxLines == Int.MAX_VALUE) {
-                textViewName.maxLines = 1
-            } else {
-                textViewName.maxLines = Integer.MAX_VALUE
-            }
-        }
 
         textViewName.text = getModelAnswerResults.name
         textViewSpecies.text = getModelAnswerResults.species
         textViewGender.text = getModelAnswerResults.gender
         textViewStatus.text = getModelAnswerResults.status
         if (getModelAnswerResults.type == "") {
-            textViewDisplayType.text = "-"
+            textViewDisplayType.text = "Type missing"
         } else {
             textViewDisplayType.text = getModelAnswerResults.type
         }
@@ -65,7 +60,7 @@ class DetailedInfoActivity : MvpAppCompatActivity(), DetailedInfoView {
     }
 
     override fun showEpisodes(listEpisode: List<String>) {
-        textViewDisplayListOfEpisode.text = listEpisode.joinToString(separator = "\n")
+        textViewDisplayListOfEpisode.text = listEpisode.joinToString(separator = "\n\n")
     }
 
     override fun showEpisode(episode: String) {

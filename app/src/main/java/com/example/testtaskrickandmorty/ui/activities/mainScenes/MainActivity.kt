@@ -39,7 +39,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         workWithAdapter()
         workWithToolbar()
         visibilityProgressBar(false)

@@ -10,7 +10,6 @@ import dagger.Component
 @AppScope
 @Component(modules = [AppModule::class])
 interface AppComponent {
-    fun inject(mainPresenter: MainPresenter)
     fun inject(mainActivityModule: MainActivityModule): MainActivitySubComponent
     fun inject(detailedActivityModule: DetailedActivityModule): DetailedActivitySubComponent
 }

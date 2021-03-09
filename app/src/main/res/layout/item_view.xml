@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#f5fffa">
+    android:background="#14ffffff">
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="175dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         app:cardCornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -29,11 +28,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="162dp"
             android:background="#caea00"
+            android:ellipsize="end"
             android:fontFamily="@font/main_font"
             android:gravity="center_horizontal|center_vertical"
+            android:maxLines="1"
             android:padding="5dp"
+            android:scrollHorizontally="true"
             android:textColor="#005d04"
-            android:textSize="30sp"
+            android:textSize="24sp"
             tools:text="Toxic Rick" />
 
     </androidx.cardview.widget.CardView>
