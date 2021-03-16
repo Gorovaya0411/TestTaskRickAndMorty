@@ -1,5 +1,6 @@
 package com.example.testtaskrickandmorty.di.module
 
+import android.app.Application
 import com.example.testtaskrickandmorty.data.apiService.RickAndMortyApiService
 import com.example.testtaskrickandmorty.data.repository.CharactersDetailedRepository
 import com.example.testtaskrickandmorty.data.repository.CharactersMainRepository
@@ -12,6 +13,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+
 
 @Module
 class AppModule {
@@ -71,4 +73,5 @@ class AppModule {
     @Provides
     fun providesDetailedRepository(apiService: RickAndMortyApiService): CharactersDetailedRepository =
         CharactersDetailedRepository(apiService)
+
 }

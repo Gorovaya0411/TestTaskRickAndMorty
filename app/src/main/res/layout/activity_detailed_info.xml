@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -39,11 +38,12 @@
                         app:layout_constraintStart_toStartOf="parent"
                         tools:layout_editor_absoluteY="5dp">
 
+
                         <ImageView
                             android:id="@+id/imageViewCharacter"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:contentDescription="@string/no_internet" />
+                            android:contentDescription="@string/image_character" />
                     </androidx.cardview.widget.CardView>
 
                     <TextView

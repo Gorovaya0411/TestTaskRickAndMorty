@@ -2,10 +2,13 @@ package com.example.testtaskrickandmorty.ui.activities.detailedInfoScenes
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import com.example.testtaskrickandmorty.MyApplication
+import androidx.room.Room
 import com.example.testtaskrickandmorty.R
 import com.example.testtaskrickandmorty.data.model.AnswerResults
 import com.example.testtaskrickandmorty.di.detailedModule.DetailedActivityModule
+import com.example.testtaskrickandmorty.room.AnswerResultDao
+import com.example.testtaskrickandmorty.room.App
+import com.example.testtaskrickandmorty.room.AppDatabase
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_detailed_info.*
 import moxy.MvpAppCompatActivity
@@ -19,7 +22,7 @@ class DetailedInfoActivity : MvpAppCompatActivity(), DetailedInfoView {
 
     @ProvidePresenter
     fun provideLandingDetailedActivityPresenter(): DetailedInfoPresenter {
-        return MyApplication.appComponent.inject(
+        return App.appComponent.inject(
             DetailedActivityModule()
         ).presenter
     }
@@ -29,41 +32,49 @@ class DetailedInfoActivity : MvpAppCompatActivity(), DetailedInfoView {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_info)
-        val getModelAnswerResults = intent.getSerializableExtra("KEY") as AnswerResults
+        val getModelAnswerResults = intent.getStringExtra("KEY") as String
+        val db = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java, "database"
+        ).build()
+        val dao: AnswerResultDao = db.answerResultDao()
+        val employee = dao.getById(getModelAnswerResults.toInt())
 
-        textViewName.text = getModelAnswerResults.name
-        textViewSpecies.text = getModelAnswerResults.species
-        textViewGender.text = getModelAnswerResults.gender
-        textViewStatus.text = getModelAnswerResults.status
-        if (getModelAnswerResults.type == "") {
+        textViewName.text = employee.name
+        textViewSpecies.text = employee.species
+        textViewGender.text = employee.gender
+        textViewStatus.text = employee.status
+        if (employee.type == "") {
             textViewDisplayType.text = "Type missing"
         } else {
-            textViewDisplayType.text = getModelAnswerResults.type
+            textViewDisplayType.text = employee.type
         }
         val endLine = arrayListOf<String>()
         textViewDisplayCreatedCharacter.text =
-            getModelAnswerResults.created.take(19).replace("T", "\n", true)
-        getModelAnswerResults.episode.forEach { episode ->
-            val endLineFilter = episode.filter { it.isDigit() }
-            endLine.add(endLineFilter)
-        }
+            employee.created.take(19).replace("T", "\n", true)
+//        employee.episodes.forEach { episode ->
+//            val endLineFilter = episode.filter { it.isDigit() }
+//            endLine.add(endLineFilter)
+//        }
         if (endLine.size == 1) {
             detailedInfoPresenter.getEpisode(endLine[0])
         } else {
             detailedInfoPresenter.getEpisodes(endLine.joinToString(separator = ","))
         }
         Picasso.get()
-            .load(getModelAnswerResults.image)
+            .load(employee.image)
             .fit()
             .into(imageViewCharacter)
+//        showEpisode(employee.episode)
+//        showEpisodes(employee.episodes)
 
     }
 
-    override fun showEpisodes(listEpisode: List<String>) {
+     private fun showEpisodes(listEpisode: List<String>) {
         textViewDisplayListOfEpisode.text = listEpisode.joinToString(separator = "\n\n")
     }
 
-    override fun showEpisode(episode: String) {
+     private fun showEpisode(episode: String) {
         textViewDisplayListOfEpisode.text = episode
 
     }

@@ -13,13 +13,15 @@ class DetailedInfoPresenter @Inject constructor(private val charactersDetailedUs
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ list ->
+//                val employee = AnswerResult()
                 val listEpisode = arrayListOf<String>()
                 var increment = 1
                 list.forEach {
                     listEpisode.add("$increment)${it.name}")
                     increment++
                 }
-                viewState.showEpisodes(listEpisode)
+//                employee.episodes = listEpisode
+//                viewState.showEpisodes(listEpisode)
             }, {
 
             })
@@ -29,7 +31,9 @@ class DetailedInfoPresenter @Inject constructor(private val charactersDetailedUs
         val getEpisode = charactersDetailedUseCase.getEpisode(string)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                viewState.showEpisode(it.name)
+
+//                val episode = AnswerResult()
+//                episode.episode = it.name
             }, {
 
             })

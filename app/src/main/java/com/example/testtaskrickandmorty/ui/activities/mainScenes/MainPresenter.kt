@@ -1,6 +1,7 @@
 package com.example.testtaskrickandmorty.ui.activities.mainScenes
 
 
+import com.example.testtaskrickandmorty.data.model.AnswerResults
 import com.example.testtaskrickandmorty.domain.CharactersMainUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import moxy.MvpPresenter
@@ -9,20 +10,21 @@ import javax.inject.Inject
 class MainPresenter @Inject constructor(private val charactersMainUseCase: CharactersMainUseCase) :
     MvpPresenter<MainView>() {
 
-
-    private var increment: Int = 1
     private var isRequest: Boolean = false
     fun swipeRefresh() {
 
         val disposable = charactersMainUseCase.swipeRefresh()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                viewState.showInternet()
+//                viewState.showInternet()
                 viewState.populateData(it.results)
             }, {
-                viewState.showNoInternet()
+//                viewState.showNoInternet()
+//                viewState.lackInternet()
+                viewState.populateData(viewState.throwable())
             })
     }
+
 
     fun getMoreItems() {
 

@@ -7,9 +7,11 @@ import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(value = AddToEndStrategy::class)
 interface MainView : MvpView {
-    fun showInternet()
-    fun showNoInternet()
+//    fun showInternet()
+//    fun showNoInternet()
     fun populateData(model: List<AnswerResults>)
     fun visibilityProgressBar(isVisible: Boolean)
     fun addData(model: List<AnswerResults>)
+    fun lackInternet(): Boolean
+    fun throwable():List<AnswerResults>
 }
