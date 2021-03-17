@@ -6,4 +6,6 @@ import moxy.viewstate.strategy.StateStrategyType
 
 @StateStrategyType(value = AddToEndStrategy::class)
 interface DetailedInfoView : MvpView {
+    fun showEpisodes(listEpisode: List<String>)
+    fun showEpisode(episode: String)
 }

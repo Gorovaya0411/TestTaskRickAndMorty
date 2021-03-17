@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_detailed_info.*
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import kotlin.properties.Delegates
 
 class DetailedInfoActivity : MvpAppCompatActivity(), DetailedInfoView {
 
@@ -27,19 +28,19 @@ class DetailedInfoActivity : MvpAppCompatActivity(), DetailedInfoView {
         ).presenter
     }
 
+    var id by Delegates.notNull<Int>()
+    val db: AppDatabase = App.getDatabase()
+    val dao: AnswerResultDao = db.answerResultDao()
+
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed_info)
-        val getModelAnswerResults = intent.getStringExtra("KEY") as String
-        val db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java, "database"
-        ).build()
-        val dao: AnswerResultDao = db.answerResultDao()
-        val employee = dao.getById(getModelAnswerResults.toInt())
+        val getModelAnswerResults = intent.getSerializableExtra("KEY") as AnswerResults
 
+        val employee = dao.getById(getModelAnswerResults.id ?: 0)
+        id = getModelAnswerResults.id!!
         textViewName.text = employee.name
         textViewSpecies.text = employee.species
         textViewGender.text = employee.gender
@@ -52,30 +53,29 @@ class DetailedInfoActivity : MvpAppCompatActivity(), DetailedInfoView {
         val endLine = arrayListOf<String>()
         textViewDisplayCreatedCharacter.text =
             employee.created.take(19).replace("T", "\n", true)
-//        employee.episodes.forEach { episode ->
-//            val endLineFilter = episode.filter { it.isDigit() }
-//            endLine.add(endLineFilter)
-//        }
+        employee.episode!!.forEach { episode ->
+            val endLineFilter = episode.filter { it.isDigit() }
+            endLine.add(endLineFilter)
+        }
         if (endLine.size == 1) {
-            detailedInfoPresenter.getEpisode(endLine[0])
+            detailedInfoPresenter.getEpisode(endLine[0], id)
         } else {
-            detailedInfoPresenter.getEpisodes(endLine.joinToString(separator = ","))
+            detailedInfoPresenter.getEpisodes(endLine.joinToString(separator = ","), id)
         }
         Picasso.get()
             .load(employee.image)
             .fit()
             .into(imageViewCharacter)
-//        showEpisode(employee.episode)
-//        showEpisodes(employee.episodes)
-
     }
 
-     private fun showEpisodes(listEpisode: List<String>) {
+    override fun showEpisodes(listEpisode: List<String>) {
         textViewDisplayListOfEpisode.text = listEpisode.joinToString(separator = "\n\n")
+        dao.updateEpisodes(id, listEpisode)
     }
 
-     private fun showEpisode(episode: String) {
+    override fun showEpisode(episode: String) {
         textViewDisplayListOfEpisode.text = episode
+        dao.updateEpisode(id, episode)
 
     }
 }

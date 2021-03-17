@@ -38,13 +38,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         ).presenter
     }
 
-    private lateinit var answerResultList: List<AnswerResults>
-
-    private val db: AppDatabase = App.getDatabase()
-    var employeeDao: AnswerResultDao = db.answerResultDao()
-
     private val myAdapter =
-        Adapter { openingNewActivity(answerResultList.forEach { it.id }.toString()) }
+        Adapter { openingNewActivity(it) }
 
     @SuppressLint("CheckResult")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -81,7 +76,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         supportActionBar!!.title = ""
     }
 
-    private fun openingNewActivity(model: String) {
+    private fun openingNewActivity(model: AnswerResults) {
         val intent = Intent(this, DetailedInfoActivity::class.java)
         intent.putExtra("KEY", model)
         startActivity(intent)
@@ -99,22 +94,6 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         }
     }
 
-//    override fun showNoInternet() {
-//        recyclerView.visibility = RecyclerView.INVISIBLE
-//        imageViewNoInternet.visibility = ImageView.VISIBLE
-//        textViewNoInternet.visibility = TextView.VISIBLE
-//        cardViewNoInternet.visibility = CardView.VISIBLE
-//        swipeRefreshLayout.isRefreshing = false
-//    }
-//
-//    override fun showInternet() {
-//        recyclerView.visibility = RecyclerView.VISIBLE
-//        textViewNoInternet.visibility = TextView.INVISIBLE
-//        imageViewNoInternet.visibility = ImageView.INVISIBLE
-//        cardViewNoInternet.visibility = CardView.INVISIBLE
-//        swipeRefreshLayout.isRefreshing = false
-//    }
-
     override fun populateData(model: List<AnswerResults>) {
         myAdapter.setData(model)
     }
@@ -122,29 +101,5 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     override fun addData(model: List<AnswerResults>) {
         myAdapter.addData(model)
     }
-
-
-    @SuppressLint("CheckResult")
-    override fun throwable(): List<AnswerResults> {
-        var list :List<AnswerResults>
-        employeeDao.getAll()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                list = it
-            }
-        return list
-    }
-
-    override fun lackInternet(): Boolean {
-        val connectionManager: ConnectivityManager =
-            this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetwork: NetworkInfo? = connectionManager.activeNetworkInfo
-        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
-        if (!isConnected) {
-            throwable()
-        }
-        return isConnected
-    }
-
 }
 

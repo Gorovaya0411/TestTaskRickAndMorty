@@ -70,41 +70,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardViewNoInternet"
-        android:layout_width="145dp"
-        android:layout_height="190dp"
-        app:cardCornerRadius="100dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:ignore="MissingConstraints">
-
-        <ImageView
-            android:id="@+id/imageViewNoInternet"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="@string/no_internet"
-            app:srcCompat="@drawable/no_internet">
-
-        </ImageView>
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/textViewNoInternet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#15162b"
-        android:fontFamily="@font/main_font"
-        android:text="@string/no_Internet_connection"
-        android:textColor="#03ccd3"
-        android:textSize="35sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/progressBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewNoInternet" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
