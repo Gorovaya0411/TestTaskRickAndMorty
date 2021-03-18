@@ -1,11 +1,15 @@
 package com.example.testtaskrickandmorty.ui.activities.mainScenes
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.testtaskrickandmorty.R
@@ -57,6 +61,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         swipeRefreshLayout.setOnRefreshListener {
 
             runnable = Runnable {
+                lackInternet()
                 mainPresenter.swipeRefresh()
                 mainPresenter.getMoreItems()
                 swipeRefreshLayout.isRefreshing = false
@@ -115,6 +120,29 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     override fun addData(model: List<AnswerResults>) {
         myAdapter.addData(model)
+    }
+
+    fun lackInternet(): Boolean {
+        val connectionManager: ConnectivityManager =
+            this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: NetworkInfo? = connectionManager.activeNetworkInfo
+        val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting == true
+        if (!isConnected) {
+            Toast.makeText(
+                this,
+                "Подключение к интернету отключено",
+                Toast.LENGTH_LONG
+            )
+                .show()
+            mainPresenter.lackInternet()
+        } else {
+            Toast.makeText(
+                this,
+                "Подключение к интернету подключено",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+        return isConnected
     }
 }
 

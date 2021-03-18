@@ -55,4 +55,8 @@ class MainPresenter @Inject constructor(private val charactersMainUseCase: Chara
             })
     }
 
+    fun lackInternet() {
+        getAllCharacters()
+    }
+
 }
