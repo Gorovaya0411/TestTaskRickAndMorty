@@ -1,32 +1,31 @@
 package com.example.testtaskrickandmorty.ui.activities.mainScenes
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.net.ConnectivityManager
-import android.net.NetworkInfo
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.widget.ProgressBar
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.testtaskrickandmorty.R
 import com.example.testtaskrickandmorty.data.model.AnswerResults
 import com.example.testtaskrickandmorty.di.mainModule.MainActivityModule
-import com.example.testtaskrickandmorty.room.AnswerResultDao
 import com.example.testtaskrickandmorty.room.App
-import com.example.testtaskrickandmorty.room.AppDatabase
 import com.example.testtaskrickandmorty.ui.Adapter
 import com.example.testtaskrickandmorty.ui.PaginationScrollListener
 import com.example.testtaskrickandmorty.ui.activities.detailedInfoScenes.DetailedInfoActivity
-import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_main.*
 import moxy.MvpAppCompatActivity
 import moxy.presenter.InjectPresenter
 import moxy.presenter.ProvidePresenter
+import java.util.*
 
 
 class MainActivity : MvpAppCompatActivity(), MainView {
+    private lateinit var random: Random
+    private lateinit var handler: Handler
+    private lateinit var runnable: Runnable
 
     @InjectPresenter
     lateinit var mainPresenter: MainPresenter
@@ -41,7 +40,8 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     private val myAdapter =
         Adapter { openingNewActivity(it) }
 
-    @SuppressLint("CheckResult")
+    @RequiresApi(Build.VERSION_CODES.M)
+    @SuppressLint("CheckResult", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -51,17 +51,27 @@ class MainActivity : MvpAppCompatActivity(), MainView {
         visibilityProgressBar(false)
         mainPresenter.swipeRefresh()
 
-        swipeRefreshLayout.setColorSchemeResources(
-            android.R.color.holo_green_dark,
-            android.R.color.holo_green_light,
-            android.R.color.holo_green_dark,
-            android.R.color.holo_green_light
-        )
+        random = Random()
+        handler = Handler()
 
         swipeRefreshLayout.setOnRefreshListener {
-            mainPresenter.swipeRefresh()
+
+            runnable = Runnable {
+                mainPresenter.swipeRefresh()
+                mainPresenter.getMoreItems()
+                swipeRefreshLayout.isRefreshing = false
+            }
+
+            handler.postDelayed(
+                runnable, 3000.toLong()
+            )
         }
 
+        swipeRefreshLayout.setColorSchemeResources(
+            R.color.color,
+            R.color.color1,
+            R.color.color2
+        )
         recyclerView.addOnScrollListener(
             PaginationScrollListener(
                 { mainPresenter.getMoreItems() },
@@ -69,6 +79,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
             )
         )
     }
+
 
     private fun workWithToolbar() {
         setSupportActionBar(toolbar)
@@ -89,8 +100,12 @@ class MainActivity : MvpAppCompatActivity(), MainView {
 
     override fun visibilityProgressBar(isVisible: Boolean) {
         when (isVisible) {
-            true -> progressBar.visibility = ProgressBar.VISIBLE
-            false -> progressBar.visibility = ProgressBar.INVISIBLE
+            true -> {
+                progressBar.visibility = ProgressBar.VISIBLE
+            }
+            false -> {
+                progressBar.visibility = ProgressBar.INVISIBLE
+            }
         }
     }
 

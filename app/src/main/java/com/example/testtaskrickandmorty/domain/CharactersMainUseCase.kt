@@ -10,5 +10,6 @@ import javax.inject.Inject
 class CharactersMainUseCase @Inject constructor(private val charactersMainRepository: CharactersMainRepository) {
     fun swipeRefresh(): Observable<Data> = charactersMainRepository.swipeRefresh()
     fun getMoreItems(): Observable<Data> = charactersMainRepository.getMoreItems()
-    fun get():Single<List<AnswerResults>> = charactersMainRepository.get()
+    fun getAllCharacters(): Single<List<AnswerResults>> =
+        charactersMainRepository.getAllCharacters()
 }

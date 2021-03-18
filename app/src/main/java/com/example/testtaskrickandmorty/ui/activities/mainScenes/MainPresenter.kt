@@ -10,15 +10,18 @@ class MainPresenter @Inject constructor(private val charactersMainUseCase: Chara
     MvpPresenter<MainView>() {
 
     private var isRequest: Boolean = false
-    fun swipeRefresh() {
+    fun swipeRefresh(): Boolean {
 
         val disposable = charactersMainUseCase.swipeRefresh()
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 viewState.populateData(it.results)
+                viewState.visibilityProgressBar(false)
             }, {
-                get()
+                getAllCharacters()
+
             })
+        return true
     }
 
 
@@ -33,18 +36,21 @@ class MainPresenter @Inject constructor(private val charactersMainUseCase: Chara
                     viewState.addData(it.results)
                     isRequest = false
                     viewState.visibilityProgressBar(false)
+
                 }, {
                     viewState.visibilityProgressBar(false)
                 })
         }
     }
 
-    fun get() {
-       val disposable = charactersMainUseCase.get().subscribeOn(Schedulers.io())
+    private fun getAllCharacters() {
+        val disposable = charactersMainUseCase.getAllCharacters().subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
+
                 viewState.populateData(it)
-            },{
+                viewState.visibilityProgressBar(false)
+            }, {
 
             })
     }

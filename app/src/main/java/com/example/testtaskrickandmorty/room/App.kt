@@ -11,6 +11,7 @@ class App : Application() {
     companion object {
         private lateinit var database: AppDatabase
         lateinit var appComponent: AppComponent
+
         @JvmStatic
         fun getDatabase(): AppDatabase {
             return database
@@ -22,7 +23,4 @@ class App : Application() {
         appComponent = DaggerAppComponent.builder().appModule(AppModule()).build()
         database = Room.databaseBuilder(this, AppDatabase::class.java, "ffff").build()
     }
-//    fun getDatabase():AppDatabase {
-//        return database
-//    }
 }

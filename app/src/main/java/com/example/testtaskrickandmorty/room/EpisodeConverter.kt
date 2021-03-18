@@ -1,10 +1,6 @@
 package com.example.testtaskrickandmorty.room
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.room.TypeConverter
-import java.util.*
-import java.util.stream.Collectors
 
 open class EpisodeConverter {
 
